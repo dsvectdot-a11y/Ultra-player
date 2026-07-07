@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Accessible Video Player</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <h1>Accessible Video Player</h1>
+
+    <div class="player" id="player" role="region" aria-label="Video player">
+      <video id="video" preload="metadata" tabindex="0">
+        <!-- Replace "video.mp4" with your file. Provide multiple sources for broad support. -->
+        <source src="video.mp4" type="video/mp4" />
+        <track id="captions-track" kind="subtitles" srclang="en" label="English"
+               src="captions.vtt" default>
+        Your browser does not support the HTML5 Video element.
+      </video>
+
+      <div class="controls" id="controls" aria-hidden="false">
+        <button id="play" class="control" aria-label="Play" title="Play (Space)">
+          ▶
+        </button>
+
+        <div class="seek">
+          <input id="seek" type="range" min="0" max="100" value="0" aria-label="Seek" />
+          <div class="time" aria-live="polite">
+            <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
+          </div>
+        </div>
+
+        <div class="volume">
+          <button id="mute" class="control" aria-pressed="false" aria-label="Mute">🔊</button>
+          <input id="volume" type="range" min="0" max="1" step="0.05" value="1" aria-label="Volume" />
+        </div>
+
+        <button id="captions" class="control" aria-pressed="true" aria-label="Toggle captions">CC</button>
+
+        <button id="pip" class="control" aria-label="Picture-in-Picture">PIP</button>
+
+        <button id="fullscreen" class="control" aria-label="Fullscreen (F)">⤢</button>
+      </div>
+    </div>
+
+    <section class="instructions" aria-hidden="false">
+      <h2>Keyboard shortcuts</h2>
+      <ul>
+        <li>Space / K — Play/Pause</li>
+        <li>Left / Right — Seek -5 / +5 seconds</li>
+        <li>Up / Down — Volume + / -</li>
+        <li>F — Fullscreen</li>
+        <li>C — Toggle captions</li>
+      </ul>
+    </section>
+  </main>
+
+  <script src="player.js"></script>
+</body>
+</html>
